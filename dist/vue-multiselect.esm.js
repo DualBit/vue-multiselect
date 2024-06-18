@@ -1216,7 +1216,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             tabindex: $props.tabindex,
             onInput: _cache[1] || (_cache[1] = $event => (_ctx.updateSearch($event.target.value))),
             onFocus: _cache[2] || (_cache[2] = withModifiers($event => (_ctx.activate()), ["prevent"])),
-            onBlur: _cache[3] || (_cache[3] = withModifiers($event => (_ctx.deactivate('blur2')), ["prevent"])),
+            onBlur: _cache[3] || (_cache[3] = withModifiers($event => (_ctx.searchable ? false : _ctx.deactivate('blur2')), ["prevent"])),
             onKeyup: _cache[4] || (_cache[4] = withKeys($event => (_ctx.deactivate('esc2')), ["esc"])),
             onKeydown: [
               _cache[5] || (_cache[5] = withKeys(withModifiers($event => (_ctx.pointerForward()), ["prevent"]), ["down"])),

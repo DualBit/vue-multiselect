@@ -699,9 +699,9 @@ export default {
      * @fires this#activate || this#deactivate
      * @property {Boolean} isOpen indicates if dropdown is open
      */
-    toggle () {
+    toggle (here = '') {
       this.isOpen
-        ? this.deactivate()
+        ? this.deactivate(here)
         : this.activate()
     },
     /**

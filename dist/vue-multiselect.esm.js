@@ -701,9 +701,9 @@ var multiselectMixin = {
      * @fires this#activate || this#deactivate
      * @property {Boolean} isOpen indicates if dropdown is open
      */
-    toggle () {
+    toggle (here = '') {
       this.isOpen
-        ? this.deactivate()
+        ? this.deactivate(here)
         : this.activate();
     },
     /**
@@ -1143,7 +1143,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, [
     renderSlot(_ctx.$slots, "caret", { toggle: _ctx.toggle }, () => [
       createElementVNode("div", {
-        onMousedown: _cache[0] || (_cache[0] = withModifiers($event => (_ctx.toggle()), ["prevent","stop"])),
+        onMousedown: _cache[0] || (_cache[0] = withModifiers($event => (_ctx.toggle('b')), ["prevent","stop"])),
         class: "multiselect__select"
       }, null, 32 /* NEED_HYDRATION */)
     ]),
@@ -1233,7 +1233,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         ? (openBlock(), createElementBlock("span", {
             key: 1,
             class: "multiselect__single",
-            onMousedown: _cache[10] || (_cache[10] = withModifiers((...args) => (_ctx.toggle && _ctx.toggle(...args)), ["prevent"]))
+            onMousedown: _cache[10] || (_cache[10] = withModifiers($event => (_ctx.toggle('c')), ["prevent"]))
           }, [
             renderSlot(_ctx.$slots, "singleLabel", { option: $options.singleValue }, () => [
               createTextVNode(toDisplayString(_ctx.currentOptionLabel), 1 /* TEXT */)
@@ -1244,7 +1244,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         ? (openBlock(), createElementBlock("span", {
             key: 2,
             class: "multiselect__placeholder",
-            onMousedown: _cache[11] || (_cache[11] = withModifiers((...args) => (_ctx.toggle && _ctx.toggle(...args)), ["prevent"]))
+            onMousedown: _cache[11] || (_cache[11] = withModifiers($event => (_ctx.toggle('d')), ["prevent"]))
           }, [
             renderSlot(_ctx.$slots, "placeholder", {}, () => [
               createTextVNode(toDisplayString(_ctx.placeholder), 1 /* TEXT */)

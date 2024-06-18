@@ -702,9 +702,9 @@ var VueMultiselect = (function (exports, vue) {
        * @fires this#activate || this#deactivate
        * @property {Boolean} isOpen indicates if dropdown is open
        */
-      toggle () {
+      toggle (here = '') {
         this.isOpen
-          ? this.deactivate()
+          ? this.deactivate(here)
           : this.activate();
       },
       /**
@@ -1144,7 +1144,7 @@ var VueMultiselect = (function (exports, vue) {
     }, [
       vue.renderSlot(_ctx.$slots, "caret", { toggle: _ctx.toggle }, () => [
         vue.createElementVNode("div", {
-          onMousedown: _cache[0] || (_cache[0] = vue.withModifiers($event => (_ctx.toggle()), ["prevent","stop"])),
+          onMousedown: _cache[0] || (_cache[0] = vue.withModifiers($event => (_ctx.toggle('b')), ["prevent","stop"])),
           class: "multiselect__select"
         }, null, 32 /* NEED_HYDRATION */)
       ]),
@@ -1234,7 +1234,7 @@ var VueMultiselect = (function (exports, vue) {
           ? (vue.openBlock(), vue.createElementBlock("span", {
               key: 1,
               class: "multiselect__single",
-              onMousedown: _cache[10] || (_cache[10] = vue.withModifiers((...args) => (_ctx.toggle && _ctx.toggle(...args)), ["prevent"]))
+              onMousedown: _cache[10] || (_cache[10] = vue.withModifiers($event => (_ctx.toggle('c')), ["prevent"]))
             }, [
               vue.renderSlot(_ctx.$slots, "singleLabel", { option: $options.singleValue }, () => [
                 vue.createTextVNode(vue.toDisplayString(_ctx.currentOptionLabel), 1 /* TEXT */)
@@ -1245,7 +1245,7 @@ var VueMultiselect = (function (exports, vue) {
           ? (vue.openBlock(), vue.createElementBlock("span", {
               key: 2,
               class: "multiselect__placeholder",
-              onMousedown: _cache[11] || (_cache[11] = vue.withModifiers((...args) => (_ctx.toggle && _ctx.toggle(...args)), ["prevent"]))
+              onMousedown: _cache[11] || (_cache[11] = vue.withModifiers($event => (_ctx.toggle('d')), ["prevent"]))
             }, [
               vue.renderSlot(_ctx.$slots, "placeholder", {}, () => [
                 vue.createTextVNode(vue.toDisplayString(_ctx.placeholder), 1 /* TEXT */)

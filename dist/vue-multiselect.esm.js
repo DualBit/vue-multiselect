@@ -1,4 +1,4 @@
-import { openBlock, createElementBlock, normalizeClass, withKeys, withModifiers, renderSlot, createElementVNode, withDirectives, Fragment, renderList, toDisplayString, vShow, createCommentVNode, createVNode, Transition, withCtx, normalizeStyle, createTextVNode } from 'vue';
+import { openBlock, createBlock, withKeys, withModifiers, renderSlot, createVNode, withDirectives, Fragment, renderList, toDisplayString, vShow, createCommentVNode, Transition, withCtx, createTextVNode } from 'vue';
 
 function isEmpty (opt) {
   if (opt === 0) return false
@@ -522,7 +522,7 @@ var multiselectMixin = {
       if (option.isTag) {
         this.$emit('tag', option.label, this.id);
         this.search = '';
-        if (this.closeOnSelect && !this.multiple) this.deactivate('banana');
+        if (this.closeOnSelect && !this.multiple) this.deactivate();
       } else {
         const isSelected = this.isSelected(option);
 
@@ -543,7 +543,7 @@ var multiselectMixin = {
         if (this.clearOnSelect) this.search = '';
       }
       /* istanbul ignore else */
-      if (this.closeOnSelect) this.deactivate('mela');
+      if (this.closeOnSelect) this.deactivate();
     },
     /**
      * Add the given group options to the list of selected options
@@ -584,7 +584,7 @@ var multiselectMixin = {
         );
       }
 
-      if (this.closeOnSelect) this.deactivate('arancia');
+      if (this.closeOnSelect) this.deactivate();
     },
     /**
      * Helper to identify if all values in a group are selected
@@ -618,7 +618,7 @@ var multiselectMixin = {
       if (option.$isDisabled) return
       /* istanbul ignore else */
       if (!this.allowEmpty && this.internalValue.length <= 1) {
-        this.deactivate('cocco');
+        this.deactivate();
         return
       }
 
@@ -635,7 +635,7 @@ var multiselectMixin = {
       this.$emit('remove', option, this.id);
 
       /* istanbul ignore else */
-      if (this.closeOnSelect && shouldClose) this.deactivate('pera');
+      if (this.closeOnSelect && shouldClose) this.deactivate();
     },
     /**
      * Calls this.removeElement() with the last element
@@ -679,14 +679,12 @@ var multiselectMixin = {
      * Closes the multiselect’s dropdown.
      * Sets this.isOpen to FALSE
      */
-    deactivate (here = '') {
-      console.log(here);
+    deactivate () {
       /* istanbul ignore else */
-      if (!this.isOpen || here === 'blur2') return
+      if (!this.isOpen) return
 
       this.isOpen = false;
       /* istanbul ignore else  */
-      console.log(this, this.$refs);
       if (this.searchable) {
         if (this.$refs.search !== null && typeof this.$refs.search !== 'undefined') this.$refs.search.blur();
       } else {
@@ -702,9 +700,9 @@ var multiselectMixin = {
      * @fires this#activate || this#deactivate
      * @property {Boolean} isOpen indicates if dropdown is open
      */
-    toggle (here = '') {
+    toggle () {
       this.isOpen
-        ? this.deactivate(here || 'toggle')
+        ? this.deactivate()
         : this.activate();
     },
     /**
@@ -815,9 +813,7 @@ var pointerMixin = {
           this.filteredOptions[this.pointer] &&
           this.filteredOptions[this.pointer].$isLabel &&
           !this.groupSelect
-        ) {
-          this.pointerForward();
-        }
+        ) this.pointerForward();
       }
       this.pointerDirty = true;
     },
@@ -867,7 +863,6 @@ var pointerMixin = {
       ) {
         this.pointerForward();
       }
-      this.pointerDirty = true;
     },
     pointerSet (index) {
       this.pointer = index;
@@ -1107,76 +1102,68 @@ var script = {
   }
 };
 
-const _hoisted_1 = ["tabindex", "aria-owns"];
-const _hoisted_2 = {
+const _hoisted_1 = {
   ref: "tags",
   class: "multiselect__tags"
 };
-const _hoisted_3 = { class: "multiselect__tags-wrap" };
-const _hoisted_4 = ["textContent"];
-const _hoisted_5 = ["onKeypress", "onMousedown"];
-const _hoisted_6 = ["textContent"];
-const _hoisted_7 = { class: "multiselect__spinner" };
-const _hoisted_8 = ["name", "id", "placeholder", "value", "disabled", "tabindex", "aria-controls"];
-const _hoisted_9 = ["id"];
-const _hoisted_10 = { key: 0 };
-const _hoisted_11 = { class: "multiselect__option" };
-const _hoisted_12 = ["id", "role"];
-const _hoisted_13 = ["onClick", "onMouseenter", "data-select", "data-selected", "data-deselect"];
-const _hoisted_14 = ["data-select", "data-deselect", "onMouseenter", "onMousedown"];
-const _hoisted_15 = { class: "multiselect__option" };
-const _hoisted_16 = { class: "multiselect__option" };
+const _hoisted_2 = { class: "multiselect__tags-wrap" };
+const _hoisted_3 = { class: "multiselect__spinner" };
+const _hoisted_4 = { key: 0 };
+const _hoisted_5 = { class: "multiselect__option" };
+const _hoisted_6 = { class: "multiselect__option" };
+const _hoisted_7 = /*#__PURE__*/createTextVNode("No elements found. Consider changing the search query.");
+const _hoisted_8 = { class: "multiselect__option" };
+const _hoisted_9 = /*#__PURE__*/createTextVNode("List is empty.");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (openBlock(), createElementBlock("div", {
+  return (openBlock(), createBlock("div", {
     tabindex: _ctx.searchable ? -1 : $props.tabindex,
-    class: normalizeClass([{ 'multiselect--active': _ctx.isOpen, 'multiselect--disabled': $props.disabled, 'multiselect--above': $options.isAbove, 'multiselect--has-options-group': $options.hasOptionGroup }, "multiselect"]),
+    class: [{ 'multiselect--active': _ctx.isOpen, 'multiselect--disabled': $props.disabled, 'multiselect--above': $options.isAbove, 'multiselect--has-options-group': $options.hasOptionGroup }, "multiselect"],
     onFocus: _cache[14] || (_cache[14] = $event => (_ctx.activate())),
-    onBlur: _cache[15] || (_cache[15] = $event => (_ctx.searchable ? false : _ctx.deactivate('blur'))),
+    onBlur: _cache[15] || (_cache[15] = $event => (_ctx.searchable ? false : _ctx.deactivate())),
     onKeydown: [
       _cache[16] || (_cache[16] = withKeys(withModifiers($event => (_ctx.pointerForward()), ["self","prevent"]), ["down"])),
-      _cache[17] || (_cache[17] = withKeys(withModifiers($event => (_ctx.pointerBackward()), ["self","prevent"]), ["up"])),
-      _cache[18] || (_cache[18] = withKeys(withModifiers($event => (_ctx.addPointerElement($event)), ["prevent","stop","self"]), ["enter"])),
-      _cache[19] || (_cache[19] = withKeys(withModifiers($event => (_ctx.addPointerElement($event)), ["stop","self"]), ["tab"]))
+      _cache[17] || (_cache[17] = withKeys(withModifiers($event => (_ctx.pointerBackward()), ["self","prevent"]), ["up"]))
     ],
-    onKeyup: _cache[20] || (_cache[20] = withKeys($event => (_ctx.deactivate('esc')), ["esc"])),
+    onKeypress: _cache[18] || (_cache[18] = withKeys(withModifiers($event => (_ctx.addPointerElement($event)), ["stop","self"]), ["enter","tab"])),
+    onKeyup: _cache[19] || (_cache[19] = withKeys($event => (_ctx.deactivate()), ["esc"])),
     role: "combobox",
     "aria-owns": 'listbox-'+_ctx.id
   }, [
     renderSlot(_ctx.$slots, "caret", { toggle: _ctx.toggle }, () => [
-      createElementVNode("div", {
-        onMousedown: _cache[0] || (_cache[0] = withModifiers($event => (_ctx.toggle('b')), ["prevent","stop"])),
+      createVNode("div", {
+        onMousedown: _cache[1] || (_cache[1] = withModifiers($event => (_ctx.toggle()), ["prevent","stop"])),
         class: "multiselect__select"
-      }, null, 32 /* NEED_HYDRATION */)
+      }, null, 32 /* HYDRATE_EVENTS */)
     ]),
     renderSlot(_ctx.$slots, "clear", { search: _ctx.search }),
-    createElementVNode("div", _hoisted_2, [
+    createVNode("div", _hoisted_1, [
       renderSlot(_ctx.$slots, "selection", {
         search: _ctx.search,
         remove: _ctx.removeElement,
         values: $options.visibleValues,
         isOpen: _ctx.isOpen
       }, () => [
-        withDirectives(createElementVNode("div", _hoisted_3, [
-          (openBlock(true), createElementBlock(Fragment, null, renderList($options.visibleValues, (option, index) => {
+        withDirectives(createVNode("div", _hoisted_2, [
+          (openBlock(true), createBlock(Fragment, null, renderList($options.visibleValues, (option, index) => {
             return renderSlot(_ctx.$slots, "tag", {
               option: option,
               search: _ctx.search,
               remove: _ctx.removeElement
             }, () => [
-              (openBlock(), createElementBlock("span", {
+              (openBlock(), createBlock("span", {
                 class: "multiselect__tag",
                 key: index
               }, [
-                createElementVNode("span", {
+                createVNode("span", {
                   textContent: toDisplayString(_ctx.getOptionLabel(option))
-                }, null, 8 /* PROPS */, _hoisted_4),
-                createElementVNode("i", {
+                }, null, 8 /* PROPS */, ["textContent"]),
+                createVNode("i", {
                   tabindex: "1",
                   onKeypress: withKeys(withModifiers($event => (_ctx.removeElement(option)), ["prevent"]), ["enter"]),
                   onMousedown: withModifiers($event => (_ctx.removeElement(option)), ["prevent"]),
                   class: "multiselect__tag-icon"
-                }, null, 40 /* PROPS, NEED_HYDRATION */, _hoisted_5)
+                }, null, 40 /* PROPS, HYDRATE_EVENTS */, ["onKeypress", "onMousedown"])
               ]))
             ])
           }), 256 /* UNKEYED_FRAGMENT */))
@@ -1185,17 +1172,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         ]),
         (_ctx.internalValue && _ctx.internalValue.length > $props.limit)
           ? renderSlot(_ctx.$slots, "limit", { key: 0 }, () => [
-              createElementVNode("strong", {
+              createVNode("strong", {
                 class: "multiselect__strong",
                 textContent: toDisplayString($props.limitText(_ctx.internalValue.length - $props.limit))
-              }, null, 8 /* PROPS */, _hoisted_6)
+              }, null, 8 /* PROPS */, ["textContent"])
             ])
           : createCommentVNode("v-if", true)
       ]),
       createVNode(Transition, { name: "multiselect__loading" }, {
         default: withCtx(() => [
           renderSlot(_ctx.$slots, "loading", {}, () => [
-            withDirectives(createElementVNode("div", _hoisted_7, null, 512 /* NEED_PATCH */), [
+            withDirectives(createVNode("div", _hoisted_3, null, 512 /* NEED_PATCH */), [
               [vShow, $props.loading]
             ])
           ])
@@ -1203,7 +1190,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         _: 3 /* FORWARDED */
       }),
       (_ctx.searchable)
-        ? (openBlock(), createElementBlock("input", {
+        ? (openBlock(), createBlock("input", {
             key: 0,
             ref: "search",
             name: $props.name,
@@ -1212,71 +1199,67 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             autocomplete: "off",
             spellcheck: false,
             placeholder: _ctx.placeholder,
-            style: normalizeStyle($options.inputStyle),
+            style: $options.inputStyle,
             value: _ctx.search,
             disabled: $props.disabled,
             tabindex: $props.tabindex,
-            onInput: _cache[1] || (_cache[1] = $event => (_ctx.updateSearch($event.target.value))),
-            onFocus: _cache[2] || (_cache[2] = withModifiers($event => (_ctx.activate()), ["prevent"])),
-            onBlur: _cache[3] || (_cache[3] = withModifiers($event => (_ctx.deactivate('blur2')), ["prevent"])),
-            onKeyup: _cache[4] || (_cache[4] = withKeys($event => (_ctx.deactivate('esc2')), ["esc"])),
+            onInput: _cache[2] || (_cache[2] = $event => (_ctx.updateSearch($event.target.value))),
+            onFocus: _cache[3] || (_cache[3] = withModifiers($event => (_ctx.activate()), ["prevent"])),
+            onBlur: _cache[4] || (_cache[4] = withModifiers($event => (_ctx.deactivate()), ["prevent"])),
+            onKeyup: _cache[5] || (_cache[5] = withKeys($event => (_ctx.deactivate()), ["esc"])),
             onKeydown: [
-              _cache[5] || (_cache[5] = withKeys(withModifiers($event => (_ctx.pointerForward()), ["self","prevent"]), ["down"])),
-              _cache[6] || (_cache[6] = withKeys(withModifiers($event => (_ctx.pointerBackward()), ["prevent"]), ["up"])),
-              _cache[7] || (_cache[7] = withKeys(withModifiers($event => (_ctx.addPointerElement($event)), ["prevent","stop","self"]), ["enter"])),
-              _cache[8] || (_cache[8] = withKeys(withModifiers($event => (_ctx.addPointerElement($event)), ["stop","self"]), ["tab"])),
+              _cache[6] || (_cache[6] = withKeys(withModifiers($event => (_ctx.pointerForward()), ["prevent"]), ["down"])),
+              _cache[7] || (_cache[7] = withKeys(withModifiers($event => (_ctx.pointerBackward()), ["prevent"]), ["up"])),
               _cache[9] || (_cache[9] = withKeys(withModifiers($event => (_ctx.removeLastElement()), ["stop"]), ["delete"]))
             ],
+            onKeypress: _cache[8] || (_cache[8] = withKeys(withModifiers($event => (_ctx.addPointerElement($event)), ["prevent","stop","self"]), ["enter"])),
             class: "multiselect__input",
             "aria-controls": 'listbox-'+_ctx.id
-          }, null, 44 /* STYLE, PROPS, NEED_HYDRATION */, _hoisted_8))
+          }, null, 44 /* STYLE, PROPS, HYDRATE_EVENTS */, ["name", "id", "placeholder", "value", "disabled", "tabindex", "aria-controls"]))
         : createCommentVNode("v-if", true),
       ($options.isSingleLabelVisible)
-        ? (openBlock(), createElementBlock("span", {
+        ? (openBlock(), createBlock("span", {
             key: 1,
             class: "multiselect__single",
-            onMousedown: _cache[10] || (_cache[10] = withModifiers($event => (_ctx.toggle('c')), ["prevent"]))
+            onMousedown: _cache[10] || (_cache[10] = withModifiers((...args) => (_ctx.toggle && _ctx.toggle(...args)), ["prevent"]))
           }, [
             renderSlot(_ctx.$slots, "singleLabel", { option: $options.singleValue }, () => [
               createTextVNode(toDisplayString(_ctx.currentOptionLabel), 1 /* TEXT */)
             ])
-          ], 32 /* NEED_HYDRATION */))
+          ], 32 /* HYDRATE_EVENTS */))
         : createCommentVNode("v-if", true),
       ($options.isPlaceholderVisible)
-        ? (openBlock(), createElementBlock("span", {
+        ? (openBlock(), createBlock("span", {
             key: 2,
             class: "multiselect__placeholder",
-            onMousedown: _cache[11] || (_cache[11] = withModifiers($event => (_ctx.toggle('d')), ["prevent"]))
+            onMousedown: _cache[11] || (_cache[11] = withModifiers((...args) => (_ctx.toggle && _ctx.toggle(...args)), ["prevent"]))
           }, [
             renderSlot(_ctx.$slots, "placeholder", {}, () => [
               createTextVNode(toDisplayString(_ctx.placeholder), 1 /* TEXT */)
             ])
-          ], 32 /* NEED_HYDRATION */))
+          ], 32 /* HYDRATE_EVENTS */))
         : createCommentVNode("v-if", true)
     ], 512 /* NEED_PATCH */),
-    createVNode(Transition, {
-      name: "multiselect",
-      persisted: ""
-    }, {
+    createVNode(Transition, { name: "multiselect" }, {
       default: withCtx(() => [
-        withDirectives(createElementVNode("div", {
+        withDirectives(createVNode("div", {
           class: "multiselect__content-wrapper",
           onFocus: _cache[12] || (_cache[12] = (...args) => (_ctx.activate && _ctx.activate(...args))),
           tabindex: "-1",
           onMousedown: _cache[13] || (_cache[13] = withModifiers(() => {}, ["prevent"])),
-          style: normalizeStyle({ maxHeight: _ctx.optimizedHeight + 'px' }),
+          style: { maxHeight: _ctx.optimizedHeight + 'px' },
           ref: "list"
         }, [
-          createElementVNode("ul", {
+          createVNode("ul", {
             class: "multiselect__content",
-            style: normalizeStyle($options.contentStyle),
+            style: $options.contentStyle,
             role: "listbox",
             id: 'listbox-'+_ctx.id
           }, [
             renderSlot(_ctx.$slots, "beforeList"),
             (_ctx.multiple && _ctx.max === _ctx.internalValue.length)
-              ? (openBlock(), createElementBlock("li", _hoisted_10, [
-                  createElementVNode("span", _hoisted_11, [
+              ? (openBlock(), createBlock("li", _hoisted_4, [
+                  createVNode("span", _hoisted_5, [
                     renderSlot(_ctx.$slots, "maxElements", {}, () => [
                       createTextVNode("Maximum of " + toDisplayString(_ctx.max) + " options selected. First remove a selected option to select another.", 1 /* TEXT */)
                     ])
@@ -1284,17 +1267,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 ]))
               : createCommentVNode("v-if", true),
             (!_ctx.max || _ctx.internalValue.length < _ctx.max)
-              ? (openBlock(true), createElementBlock(Fragment, { key: 1 }, renderList(_ctx.filteredOptions, (option, index) => {
-                  return (openBlock(), createElementBlock("li", {
+              ? (openBlock(true), createBlock(Fragment, { key: 1 }, renderList(_ctx.filteredOptions, (option, index) => {
+                  return (openBlock(), createBlock("li", {
                     class: "multiselect__element",
                     key: index,
                     id: _ctx.id + '-' + index,
                     role: !(option && (option.$isLabel || option.$isDisabled)) ? 'option' : null
                   }, [
                     (!(option && (option.$isLabel || option.$isDisabled)))
-                      ? (openBlock(), createElementBlock("span", {
+                      ? (openBlock(), createBlock("span", {
                           key: 0,
-                          class: normalizeClass([_ctx.optionHighlight(index, option), "multiselect__option"]),
+                          class: [_ctx.optionHighlight(index, option), "multiselect__option"],
                           onClick: withModifiers($event => (_ctx.select(option)), ["stop"]),
                           onMouseenter: withModifiers($event => (_ctx.pointerSet(index)), ["self"]),
                           "data-select": option && option.isTag ? _ctx.tagPlaceholder : $options.selectLabelText,
@@ -1306,16 +1289,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                             search: _ctx.search,
                             index: index
                           }, () => [
-                            createElementVNode("span", null, toDisplayString(_ctx.getOptionLabel(option)), 1 /* TEXT */)
+                            createVNode("span", null, toDisplayString(_ctx.getOptionLabel(option)), 1 /* TEXT */)
                           ])
-                        ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_13))
+                        ], 42 /* CLASS, PROPS, HYDRATE_EVENTS */, ["onClick", "onMouseenter", "data-select", "data-selected", "data-deselect"]))
                       : createCommentVNode("v-if", true),
                     (option && (option.$isLabel || option.$isDisabled))
-                      ? (openBlock(), createElementBlock("span", {
+                      ? (openBlock(), createBlock("span", {
                           key: 1,
                           "data-select": _ctx.groupSelect && $options.selectGroupLabelText,
                           "data-deselect": _ctx.groupSelect && $options.deselectGroupLabelText,
-                          class: normalizeClass([_ctx.groupHighlight(index, option), "multiselect__option"]),
+                          class: [_ctx.groupHighlight(index, option), "multiselect__option"],
                           onMouseenter: withModifiers($event => (_ctx.groupSelect && _ctx.pointerSet(index)), ["self"]),
                           onMousedown: withModifiers($event => (_ctx.selectGroup(option)), ["prevent"])
                         }, [
@@ -1324,42 +1307,43 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                             search: _ctx.search,
                             index: index
                           }, () => [
-                            createElementVNode("span", null, toDisplayString(_ctx.getOptionLabel(option)), 1 /* TEXT */)
+                            createVNode("span", null, toDisplayString(_ctx.getOptionLabel(option)), 1 /* TEXT */)
                           ])
-                        ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_14))
+                        ], 42 /* CLASS, PROPS, HYDRATE_EVENTS */, ["data-select", "data-deselect", "onMouseenter", "onMousedown"]))
                       : createCommentVNode("v-if", true)
-                  ], 8 /* PROPS */, _hoisted_12))
+                  ], 8 /* PROPS */, ["id", "role"]))
                 }), 128 /* KEYED_FRAGMENT */))
               : createCommentVNode("v-if", true),
-            withDirectives(createElementVNode("li", null, [
-              createElementVNode("span", _hoisted_15, [
+            withDirectives(createVNode("li", null, [
+              createVNode("span", _hoisted_6, [
                 renderSlot(_ctx.$slots, "noResult", { search: _ctx.search }, () => [
-                  createTextVNode("No elements found. Consider changing the search query.")
+                  _hoisted_7
                 ])
               ])
             ], 512 /* NEED_PATCH */), [
               [vShow, $props.showNoResults && (_ctx.filteredOptions.length === 0 && _ctx.search && !$props.loading)]
             ]),
-            withDirectives(createElementVNode("li", null, [
-              createElementVNode("span", _hoisted_16, [
+            withDirectives(createVNode("li", null, [
+              createVNode("span", _hoisted_8, [
                 renderSlot(_ctx.$slots, "noOptions", {}, () => [
-                  createTextVNode("List is empty.")
+                  _hoisted_9
                 ])
               ])
             ], 512 /* NEED_PATCH */), [
               [vShow, $props.showNoOptions && ((_ctx.options.length === 0 || ($options.hasOptionGroup === true && _ctx.filteredOptions.length === 0)) && !_ctx.search && !$props.loading)]
             ]),
             renderSlot(_ctx.$slots, "afterList")
-          ], 12 /* STYLE, PROPS */, _hoisted_9)
-        ], 36 /* STYLE, NEED_HYDRATION */), [
+          ], 12 /* STYLE, PROPS */, ["id"])
+        ], 36 /* STYLE, HYDRATE_EVENTS */), [
           [vShow, _ctx.isOpen]
         ])
       ]),
       _: 3 /* FORWARDED */
     })
-  ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_1))
+  ], 42 /* CLASS, PROPS, HYDRATE_EVENTS */, ["tabindex", "aria-owns"]))
 }
 
 script.render = render;
 
-export { script as Multiselect, script as default, multiselectMixin, pointerMixin };
+export default script;
+export { script as Multiselect, multiselectMixin, pointerMixin };

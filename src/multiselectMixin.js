@@ -680,7 +680,7 @@ export default {
     deactivate (here = '') {
       console.log(here)
       /* istanbul ignore else */
-      if (!this.isOpen || here === 'blur2') return
+      if (!this.isOpen) return
 
       this.isOpen = false
       /* istanbul ignore else  */

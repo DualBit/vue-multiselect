@@ -523,7 +523,7 @@ var VueMultiselect = (function (exports, vue) {
         if (option.isTag) {
           this.$emit('tag', option.label, this.id);
           this.search = '';
-          if (this.closeOnSelect && !this.multiple) this.deactivate();
+          if (this.closeOnSelect && !this.multiple) this.deactivate('banana');
         } else {
           const isSelected = this.isSelected(option);
 
@@ -544,7 +544,7 @@ var VueMultiselect = (function (exports, vue) {
           if (this.clearOnSelect) this.search = '';
         }
         /* istanbul ignore else */
-        if (this.closeOnSelect) this.deactivate();
+        if (this.closeOnSelect) this.deactivate('mela');
       },
       /**
        * Add the given group options to the list of selected options
@@ -585,7 +585,7 @@ var VueMultiselect = (function (exports, vue) {
           );
         }
 
-        if (this.closeOnSelect) this.deactivate();
+        if (this.closeOnSelect) this.deactivate('arancia');
       },
       /**
        * Helper to identify if all values in a group are selected
@@ -619,7 +619,7 @@ var VueMultiselect = (function (exports, vue) {
         if (option.$isDisabled) return
         /* istanbul ignore else */
         if (!this.allowEmpty && this.internalValue.length <= 1) {
-          this.deactivate();
+          this.deactivate('cocco');
           return
         }
 
@@ -636,7 +636,7 @@ var VueMultiselect = (function (exports, vue) {
         this.$emit('remove', option, this.id);
 
         /* istanbul ignore else */
-        if (this.closeOnSelect && shouldClose) this.deactivate();
+        if (this.closeOnSelect && shouldClose) this.deactivate('pera');
       },
       /**
        * Calls this.removeElement() with the last element
@@ -680,7 +680,8 @@ var VueMultiselect = (function (exports, vue) {
        * Closes the multiselect’s dropdown.
        * Sets this.isOpen to FALSE
        */
-      deactivate () {
+      deactivate (here = '') {
+        console.log(here);
         /* istanbul ignore else */
         if (!this.isOpen) return
 
@@ -701,9 +702,9 @@ var VueMultiselect = (function (exports, vue) {
        * @fires this#activate || this#deactivate
        * @property {Boolean} isOpen indicates if dropdown is open
        */
-      toggle () {
+      toggle (here = '') {
         this.isOpen
-          ? this.deactivate()
+          ? this.deactivate(here || 'toggle')
           : this.activate();
       },
       /**
@@ -814,7 +815,9 @@ var VueMultiselect = (function (exports, vue) {
             this.filteredOptions[this.pointer] &&
             this.filteredOptions[this.pointer].$isLabel &&
             !this.groupSelect
-          ) this.pointerForward();
+          ) {
+            this.pointerForward();
+          }
         }
         this.pointerDirty = true;
       },
@@ -864,6 +867,7 @@ var VueMultiselect = (function (exports, vue) {
         ) {
           this.pointerForward();
         }
+        this.pointerDirty = true;
       },
       pointerSet (index) {
         this.pointer = index;
@@ -1103,68 +1107,76 @@ var VueMultiselect = (function (exports, vue) {
     }
   };
 
-  const _hoisted_1 = {
+  const _hoisted_1 = ["tabindex", "aria-owns"];
+  const _hoisted_2 = {
     ref: "tags",
     class: "multiselect__tags"
   };
-  const _hoisted_2 = { class: "multiselect__tags-wrap" };
-  const _hoisted_3 = { class: "multiselect__spinner" };
-  const _hoisted_4 = { key: 0 };
-  const _hoisted_5 = { class: "multiselect__option" };
-  const _hoisted_6 = { class: "multiselect__option" };
-  const _hoisted_7 = /*#__PURE__*/vue.createTextVNode("No elements found. Consider changing the search query.");
-  const _hoisted_8 = { class: "multiselect__option" };
-  const _hoisted_9 = /*#__PURE__*/vue.createTextVNode("List is empty.");
+  const _hoisted_3 = { class: "multiselect__tags-wrap" };
+  const _hoisted_4 = ["textContent"];
+  const _hoisted_5 = ["onKeypress", "onMousedown"];
+  const _hoisted_6 = ["textContent"];
+  const _hoisted_7 = { class: "multiselect__spinner" };
+  const _hoisted_8 = ["name", "id", "placeholder", "value", "disabled", "tabindex", "aria-controls"];
+  const _hoisted_9 = ["id"];
+  const _hoisted_10 = { key: 0 };
+  const _hoisted_11 = { class: "multiselect__option" };
+  const _hoisted_12 = ["id", "role"];
+  const _hoisted_13 = ["onClick", "onMouseenter", "data-select", "data-selected", "data-deselect"];
+  const _hoisted_14 = ["data-select", "data-deselect", "onMouseenter", "onMousedown"];
+  const _hoisted_15 = { class: "multiselect__option" };
+  const _hoisted_16 = { class: "multiselect__option" };
 
   function render(_ctx, _cache, $props, $setup, $data, $options) {
-    return (vue.openBlock(), vue.createBlock("div", {
+    return (vue.openBlock(), vue.createElementBlock("div", {
       tabindex: _ctx.searchable ? -1 : $props.tabindex,
-      class: [{ 'multiselect--active': _ctx.isOpen, 'multiselect--disabled': $props.disabled, 'multiselect--above': $options.isAbove, 'multiselect--has-options-group': $options.hasOptionGroup }, "multiselect"],
+      class: vue.normalizeClass([{ 'multiselect--active': _ctx.isOpen, 'multiselect--disabled': $props.disabled, 'multiselect--above': $options.isAbove, 'multiselect--has-options-group': $options.hasOptionGroup }, "multiselect"]),
       onFocus: _cache[14] || (_cache[14] = $event => (_ctx.activate())),
-      onBlur: _cache[15] || (_cache[15] = $event => (_ctx.searchable ? false : _ctx.deactivate())),
+      onBlur: _cache[15] || (_cache[15] = $event => (_ctx.searchable ? false : _ctx.deactivate('blur'))),
       onKeydown: [
         _cache[16] || (_cache[16] = vue.withKeys(vue.withModifiers($event => (_ctx.pointerForward()), ["self","prevent"]), ["down"])),
-        _cache[17] || (_cache[17] = vue.withKeys(vue.withModifiers($event => (_ctx.pointerBackward()), ["self","prevent"]), ["up"]))
+        _cache[17] || (_cache[17] = vue.withKeys(vue.withModifiers($event => (_ctx.pointerBackward()), ["self","prevent"]), ["up"])),
+        _cache[18] || (_cache[18] = vue.withKeys(vue.withModifiers($event => (_ctx.addPointerElement($event)), ["prevent","stop","self"]), ["enter"])),
+        _cache[19] || (_cache[19] = vue.withKeys(vue.withModifiers($event => (_ctx.addPointerElement($event)), ["stop","self"]), ["tab"]))
       ],
-      onKeypress: _cache[18] || (_cache[18] = vue.withKeys(vue.withModifiers($event => (_ctx.addPointerElement($event)), ["stop","self"]), ["enter","tab"])),
-      onKeyup: _cache[19] || (_cache[19] = vue.withKeys($event => (_ctx.deactivate()), ["esc"])),
+      onKeyup: _cache[20] || (_cache[20] = vue.withKeys($event => (_ctx.deactivate('esc')), ["esc"])),
       role: "combobox",
       "aria-owns": 'listbox-'+_ctx.id
     }, [
       vue.renderSlot(_ctx.$slots, "caret", { toggle: _ctx.toggle }, () => [
-        vue.createVNode("div", {
-          onMousedown: _cache[1] || (_cache[1] = vue.withModifiers($event => (_ctx.toggle()), ["prevent","stop"])),
+        vue.createElementVNode("div", {
+          onMousedown: _cache[0] || (_cache[0] = vue.withModifiers($event => (_ctx.toggle('b')), ["prevent","stop"])),
           class: "multiselect__select"
-        }, null, 32 /* HYDRATE_EVENTS */)
+        }, null, 32 /* NEED_HYDRATION */)
       ]),
       vue.renderSlot(_ctx.$slots, "clear", { search: _ctx.search }),
-      vue.createVNode("div", _hoisted_1, [
+      vue.createElementVNode("div", _hoisted_2, [
         vue.renderSlot(_ctx.$slots, "selection", {
           search: _ctx.search,
           remove: _ctx.removeElement,
           values: $options.visibleValues,
           isOpen: _ctx.isOpen
         }, () => [
-          vue.withDirectives(vue.createVNode("div", _hoisted_2, [
-            (vue.openBlock(true), vue.createBlock(vue.Fragment, null, vue.renderList($options.visibleValues, (option, index) => {
+          vue.withDirectives(vue.createElementVNode("div", _hoisted_3, [
+            (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList($options.visibleValues, (option, index) => {
               return vue.renderSlot(_ctx.$slots, "tag", {
                 option: option,
                 search: _ctx.search,
                 remove: _ctx.removeElement
               }, () => [
-                (vue.openBlock(), vue.createBlock("span", {
+                (vue.openBlock(), vue.createElementBlock("span", {
                   class: "multiselect__tag",
                   key: index
                 }, [
-                  vue.createVNode("span", {
+                  vue.createElementVNode("span", {
                     textContent: vue.toDisplayString(_ctx.getOptionLabel(option))
-                  }, null, 8 /* PROPS */, ["textContent"]),
-                  vue.createVNode("i", {
+                  }, null, 8 /* PROPS */, _hoisted_4),
+                  vue.createElementVNode("i", {
                     tabindex: "1",
                     onKeypress: vue.withKeys(vue.withModifiers($event => (_ctx.removeElement(option)), ["prevent"]), ["enter"]),
                     onMousedown: vue.withModifiers($event => (_ctx.removeElement(option)), ["prevent"]),
                     class: "multiselect__tag-icon"
-                  }, null, 40 /* PROPS, HYDRATE_EVENTS */, ["onKeypress", "onMousedown"])
+                  }, null, 40 /* PROPS, NEED_HYDRATION */, _hoisted_5)
                 ]))
               ])
             }), 256 /* UNKEYED_FRAGMENT */))
@@ -1173,17 +1185,17 @@ var VueMultiselect = (function (exports, vue) {
           ]),
           (_ctx.internalValue && _ctx.internalValue.length > $props.limit)
             ? vue.renderSlot(_ctx.$slots, "limit", { key: 0 }, () => [
-                vue.createVNode("strong", {
+                vue.createElementVNode("strong", {
                   class: "multiselect__strong",
                   textContent: vue.toDisplayString($props.limitText(_ctx.internalValue.length - $props.limit))
-                }, null, 8 /* PROPS */, ["textContent"])
+                }, null, 8 /* PROPS */, _hoisted_6)
               ])
             : vue.createCommentVNode("v-if", true)
         ]),
         vue.createVNode(vue.Transition, { name: "multiselect__loading" }, {
           default: vue.withCtx(() => [
             vue.renderSlot(_ctx.$slots, "loading", {}, () => [
-              vue.withDirectives(vue.createVNode("div", _hoisted_3, null, 512 /* NEED_PATCH */), [
+              vue.withDirectives(vue.createElementVNode("div", _hoisted_7, null, 512 /* NEED_PATCH */), [
                 [vue.vShow, $props.loading]
               ])
             ])
@@ -1191,7 +1203,7 @@ var VueMultiselect = (function (exports, vue) {
           _: 3 /* FORWARDED */
         }),
         (_ctx.searchable)
-          ? (vue.openBlock(), vue.createBlock("input", {
+          ? (vue.openBlock(), vue.createElementBlock("input", {
               key: 0,
               ref: "search",
               name: $props.name,
@@ -1200,67 +1212,71 @@ var VueMultiselect = (function (exports, vue) {
               autocomplete: "off",
               spellcheck: false,
               placeholder: _ctx.placeholder,
-              style: $options.inputStyle,
+              style: vue.normalizeStyle($options.inputStyle),
               value: _ctx.search,
               disabled: $props.disabled,
               tabindex: $props.tabindex,
-              onInput: _cache[2] || (_cache[2] = $event => (_ctx.updateSearch($event.target.value))),
-              onFocus: _cache[3] || (_cache[3] = vue.withModifiers($event => (_ctx.activate()), ["prevent"])),
-              onBlur: _cache[4] || (_cache[4] = vue.withModifiers($event => (_ctx.deactivate()), ["prevent"])),
-              onKeyup: _cache[5] || (_cache[5] = vue.withKeys($event => (_ctx.deactivate()), ["esc"])),
+              onInput: _cache[1] || (_cache[1] = $event => (_ctx.updateSearch($event.target.value))),
+              onFocus: _cache[2] || (_cache[2] = vue.withModifiers($event => (_ctx.activate()), ["prevent"])),
+              onBlur: _cache[3] || (_cache[3] = vue.withModifiers($event => (_ctx.deactivate('blur2')), ["prevent"])),
+              onKeyup: _cache[4] || (_cache[4] = vue.withKeys($event => (_ctx.deactivate('esc2')), ["esc"])),
               onKeydown: [
-                _cache[6] || (_cache[6] = vue.withKeys(vue.withModifiers($event => (_ctx.pointerForward()), ["prevent"]), ["down"])),
-                _cache[7] || (_cache[7] = vue.withKeys(vue.withModifiers($event => (_ctx.pointerBackward()), ["prevent"]), ["up"])),
+                _cache[5] || (_cache[5] = vue.withKeys(vue.withModifiers($event => (_ctx.pointerForward()), ["self","prevent"]), ["down"])),
+                _cache[6] || (_cache[6] = vue.withKeys(vue.withModifiers($event => (_ctx.pointerBackward()), ["prevent"]), ["up"])),
+                _cache[7] || (_cache[7] = vue.withKeys(vue.withModifiers($event => (_ctx.addPointerElement($event)), ["prevent","stop","self"]), ["enter"])),
+                _cache[8] || (_cache[8] = vue.withKeys(vue.withModifiers($event => (_ctx.addPointerElement($event)), ["stop","self"]), ["tab"])),
                 _cache[9] || (_cache[9] = vue.withKeys(vue.withModifiers($event => (_ctx.removeLastElement()), ["stop"]), ["delete"]))
               ],
-              onKeypress: _cache[8] || (_cache[8] = vue.withKeys(vue.withModifiers($event => (_ctx.addPointerElement($event)), ["prevent","stop","self"]), ["enter"])),
               class: "multiselect__input",
               "aria-controls": 'listbox-'+_ctx.id
-            }, null, 44 /* STYLE, PROPS, HYDRATE_EVENTS */, ["name", "id", "placeholder", "value", "disabled", "tabindex", "aria-controls"]))
+            }, null, 44 /* STYLE, PROPS, NEED_HYDRATION */, _hoisted_8))
           : vue.createCommentVNode("v-if", true),
         ($options.isSingleLabelVisible)
-          ? (vue.openBlock(), vue.createBlock("span", {
+          ? (vue.openBlock(), vue.createElementBlock("span", {
               key: 1,
               class: "multiselect__single",
-              onMousedown: _cache[10] || (_cache[10] = vue.withModifiers((...args) => (_ctx.toggle && _ctx.toggle(...args)), ["prevent"]))
+              onMousedown: _cache[10] || (_cache[10] = vue.withModifiers($event => (_ctx.toggle('c')), ["prevent"]))
             }, [
               vue.renderSlot(_ctx.$slots, "singleLabel", { option: $options.singleValue }, () => [
                 vue.createTextVNode(vue.toDisplayString(_ctx.currentOptionLabel), 1 /* TEXT */)
               ])
-            ], 32 /* HYDRATE_EVENTS */))
+            ], 32 /* NEED_HYDRATION */))
           : vue.createCommentVNode("v-if", true),
         ($options.isPlaceholderVisible)
-          ? (vue.openBlock(), vue.createBlock("span", {
+          ? (vue.openBlock(), vue.createElementBlock("span", {
               key: 2,
               class: "multiselect__placeholder",
-              onMousedown: _cache[11] || (_cache[11] = vue.withModifiers((...args) => (_ctx.toggle && _ctx.toggle(...args)), ["prevent"]))
+              onMousedown: _cache[11] || (_cache[11] = vue.withModifiers($event => (_ctx.toggle('d')), ["prevent"]))
             }, [
               vue.renderSlot(_ctx.$slots, "placeholder", {}, () => [
                 vue.createTextVNode(vue.toDisplayString(_ctx.placeholder), 1 /* TEXT */)
               ])
-            ], 32 /* HYDRATE_EVENTS */))
+            ], 32 /* NEED_HYDRATION */))
           : vue.createCommentVNode("v-if", true)
       ], 512 /* NEED_PATCH */),
-      vue.createVNode(vue.Transition, { name: "multiselect" }, {
+      vue.createVNode(vue.Transition, {
+        name: "multiselect",
+        persisted: ""
+      }, {
         default: vue.withCtx(() => [
-          vue.withDirectives(vue.createVNode("div", {
+          vue.withDirectives(vue.createElementVNode("div", {
             class: "multiselect__content-wrapper",
             onFocus: _cache[12] || (_cache[12] = (...args) => (_ctx.activate && _ctx.activate(...args))),
             tabindex: "-1",
             onMousedown: _cache[13] || (_cache[13] = vue.withModifiers(() => {}, ["prevent"])),
-            style: { maxHeight: _ctx.optimizedHeight + 'px' },
+            style: vue.normalizeStyle({ maxHeight: _ctx.optimizedHeight + 'px' }),
             ref: "list"
           }, [
-            vue.createVNode("ul", {
+            vue.createElementVNode("ul", {
               class: "multiselect__content",
-              style: $options.contentStyle,
+              style: vue.normalizeStyle($options.contentStyle),
               role: "listbox",
               id: 'listbox-'+_ctx.id
             }, [
               vue.renderSlot(_ctx.$slots, "beforeList"),
               (_ctx.multiple && _ctx.max === _ctx.internalValue.length)
-                ? (vue.openBlock(), vue.createBlock("li", _hoisted_4, [
-                    vue.createVNode("span", _hoisted_5, [
+                ? (vue.openBlock(), vue.createElementBlock("li", _hoisted_10, [
+                    vue.createElementVNode("span", _hoisted_11, [
                       vue.renderSlot(_ctx.$slots, "maxElements", {}, () => [
                         vue.createTextVNode("Maximum of " + vue.toDisplayString(_ctx.max) + " options selected. First remove a selected option to select another.", 1 /* TEXT */)
                       ])
@@ -1268,17 +1284,17 @@ var VueMultiselect = (function (exports, vue) {
                   ]))
                 : vue.createCommentVNode("v-if", true),
               (!_ctx.max || _ctx.internalValue.length < _ctx.max)
-                ? (vue.openBlock(true), vue.createBlock(vue.Fragment, { key: 1 }, vue.renderList(_ctx.filteredOptions, (option, index) => {
-                    return (vue.openBlock(), vue.createBlock("li", {
+                ? (vue.openBlock(true), vue.createElementBlock(vue.Fragment, { key: 1 }, vue.renderList(_ctx.filteredOptions, (option, index) => {
+                    return (vue.openBlock(), vue.createElementBlock("li", {
                       class: "multiselect__element",
                       key: index,
                       id: _ctx.id + '-' + index,
                       role: !(option && (option.$isLabel || option.$isDisabled)) ? 'option' : null
                     }, [
                       (!(option && (option.$isLabel || option.$isDisabled)))
-                        ? (vue.openBlock(), vue.createBlock("span", {
+                        ? (vue.openBlock(), vue.createElementBlock("span", {
                             key: 0,
-                            class: [_ctx.optionHighlight(index, option), "multiselect__option"],
+                            class: vue.normalizeClass([_ctx.optionHighlight(index, option), "multiselect__option"]),
                             onClick: vue.withModifiers($event => (_ctx.select(option)), ["stop"]),
                             onMouseenter: vue.withModifiers($event => (_ctx.pointerSet(index)), ["self"]),
                             "data-select": option && option.isTag ? _ctx.tagPlaceholder : $options.selectLabelText,
@@ -1290,16 +1306,16 @@ var VueMultiselect = (function (exports, vue) {
                               search: _ctx.search,
                               index: index
                             }, () => [
-                              vue.createVNode("span", null, vue.toDisplayString(_ctx.getOptionLabel(option)), 1 /* TEXT */)
+                              vue.createElementVNode("span", null, vue.toDisplayString(_ctx.getOptionLabel(option)), 1 /* TEXT */)
                             ])
-                          ], 42 /* CLASS, PROPS, HYDRATE_EVENTS */, ["onClick", "onMouseenter", "data-select", "data-selected", "data-deselect"]))
+                          ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_13))
                         : vue.createCommentVNode("v-if", true),
                       (option && (option.$isLabel || option.$isDisabled))
-                        ? (vue.openBlock(), vue.createBlock("span", {
+                        ? (vue.openBlock(), vue.createElementBlock("span", {
                             key: 1,
                             "data-select": _ctx.groupSelect && $options.selectGroupLabelText,
                             "data-deselect": _ctx.groupSelect && $options.deselectGroupLabelText,
-                            class: [_ctx.groupHighlight(index, option), "multiselect__option"],
+                            class: vue.normalizeClass([_ctx.groupHighlight(index, option), "multiselect__option"]),
                             onMouseenter: vue.withModifiers($event => (_ctx.groupSelect && _ctx.pointerSet(index)), ["self"]),
                             onMousedown: vue.withModifiers($event => (_ctx.selectGroup(option)), ["prevent"])
                           }, [
@@ -1308,46 +1324,46 @@ var VueMultiselect = (function (exports, vue) {
                               search: _ctx.search,
                               index: index
                             }, () => [
-                              vue.createVNode("span", null, vue.toDisplayString(_ctx.getOptionLabel(option)), 1 /* TEXT */)
+                              vue.createElementVNode("span", null, vue.toDisplayString(_ctx.getOptionLabel(option)), 1 /* TEXT */)
                             ])
-                          ], 42 /* CLASS, PROPS, HYDRATE_EVENTS */, ["data-select", "data-deselect", "onMouseenter", "onMousedown"]))
+                          ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_14))
                         : vue.createCommentVNode("v-if", true)
-                    ], 8 /* PROPS */, ["id", "role"]))
+                    ], 8 /* PROPS */, _hoisted_12))
                   }), 128 /* KEYED_FRAGMENT */))
                 : vue.createCommentVNode("v-if", true),
-              vue.withDirectives(vue.createVNode("li", null, [
-                vue.createVNode("span", _hoisted_6, [
+              vue.withDirectives(vue.createElementVNode("li", null, [
+                vue.createElementVNode("span", _hoisted_15, [
                   vue.renderSlot(_ctx.$slots, "noResult", { search: _ctx.search }, () => [
-                    _hoisted_7
+                    vue.createTextVNode("No elements found. Consider changing the search query.")
                   ])
                 ])
               ], 512 /* NEED_PATCH */), [
                 [vue.vShow, $props.showNoResults && (_ctx.filteredOptions.length === 0 && _ctx.search && !$props.loading)]
               ]),
-              vue.withDirectives(vue.createVNode("li", null, [
-                vue.createVNode("span", _hoisted_8, [
+              vue.withDirectives(vue.createElementVNode("li", null, [
+                vue.createElementVNode("span", _hoisted_16, [
                   vue.renderSlot(_ctx.$slots, "noOptions", {}, () => [
-                    _hoisted_9
+                    vue.createTextVNode("List is empty.")
                   ])
                 ])
               ], 512 /* NEED_PATCH */), [
                 [vue.vShow, $props.showNoOptions && ((_ctx.options.length === 0 || ($options.hasOptionGroup === true && _ctx.filteredOptions.length === 0)) && !_ctx.search && !$props.loading)]
               ]),
               vue.renderSlot(_ctx.$slots, "afterList")
-            ], 12 /* STYLE, PROPS */, ["id"])
-          ], 36 /* STYLE, HYDRATE_EVENTS */), [
+            ], 12 /* STYLE, PROPS */, _hoisted_9)
+          ], 36 /* STYLE, NEED_HYDRATION */), [
             [vue.vShow, _ctx.isOpen]
           ])
         ]),
         _: 3 /* FORWARDED */
       })
-    ], 42 /* CLASS, PROPS, HYDRATE_EVENTS */, ["tabindex", "aria-owns"]))
+    ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_1))
   }
 
   script.render = render;
 
   exports.Multiselect = script;
-  exports.default = script;
+  exports["default"] = script;
   exports.multiselectMixin = multiselectMixin;
   exports.pointerMixin = pointerMixin;
 
@@ -1355,4 +1371,4 @@ var VueMultiselect = (function (exports, vue) {
 
   return exports;
 
-}({}, Vue));
+})({}, Vue);

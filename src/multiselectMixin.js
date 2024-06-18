@@ -684,7 +684,6 @@ export default {
 
       this.isOpen = false
       /* istanbul ignore else  */
-      console.log(this, this.$refs)
       if (this.searchable) {
         if (this.$refs.search !== null && typeof this.$refs.search !== 'undefined') this.$refs.search.blur()
       } else {

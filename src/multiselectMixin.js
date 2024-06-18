@@ -701,7 +701,7 @@ export default {
      */
     toggle (here = '') {
       this.isOpen
-        ? this.deactivate(here)
+        ? this.deactivate('toggle')
         : this.activate()
     },
     /**

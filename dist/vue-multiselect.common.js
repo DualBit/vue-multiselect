@@ -2810,7 +2810,10 @@ const flow = (...fns) => x => fns.reduce((v, f) => f(v), x);
           this.$refs.list.scrollTop = this.pointerPosition - (this.visibleElements - 1) * this.optionHeight;
         }
         /* istanbul ignore else */
-        if (this.filteredOptions[this.pointer] && this.filteredOptions[this.pointer].$isLabel && !this.groupSelect) this.pointerForward();
+        if (this.filteredOptions[this.pointer] && this.filteredOptions[this.pointer].$isLabel && !this.groupSelect) {
+          console.log('hh');
+          this.pointerForward();
+        }
       }
       this.pointerDirty = true;
     },

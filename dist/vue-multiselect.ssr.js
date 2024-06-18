@@ -819,7 +819,10 @@ var pointerMixin = {
           this.filteredOptions[this.pointer] &&
           this.filteredOptions[this.pointer].$isLabel &&
           !this.groupSelect
-        ) this.pointerForward();
+        ) {
+          console.log('hh');
+          this.pointerForward();
+        }
       }
       this.pointerDirty = true;
     },

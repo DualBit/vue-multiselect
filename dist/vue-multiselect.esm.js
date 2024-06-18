@@ -1137,7 +1137,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       _cache[18] || (_cache[18] = withKeys(withModifiers($event => (_ctx.addPointerElement($event)), ["prevent","stop","self"]), ["enter"])),
       _cache[19] || (_cache[19] = withKeys(withModifiers($event => (_ctx.addPointerElement($event)), ["stop","self"]), ["tab"]))
     ],
-    onKeyup: _cache[20] || (_cache[20] = withKeys($event => (_ctx.deactivate()), ["esc"])),
+    onKeyup: _cache[20] || (_cache[20] = withKeys($event => (_ctx.deactivate('esc')), ["esc"])),
     role: "combobox",
     "aria-owns": 'listbox-'+_ctx.id
   }, [

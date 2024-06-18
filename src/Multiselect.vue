@@ -8,7 +8,7 @@
     @keydown.self.up.prevent="pointerBackward()"
     @keydown.enter.prevent.stop.self="addPointerElement($event)"
     @keydown.tab.stop.self="addPointerElement($event)"
-    @keyup.esc="deactivate()"
+    @keyup.esc="deactivate('esc')"
     class="multiselect"
     role="combobox"
     :aria-owns="'listbox-'+id">

@@ -690,6 +690,7 @@ var multiselectMixin = {
 
       this.isOpen = false;
       /* istanbul ignore else  */
+      console.log(this, this.$refs);
       if (this.searchable) {
         if (this.$refs.search !== null && typeof this.$refs.search !== 'undefined') this.$refs.search.blur();
       } else {
@@ -707,7 +708,7 @@ var multiselectMixin = {
      */
     toggle (here = '') {
       this.isOpen
-        ? this.deactivate('toggle')
+        ? this.deactivate(here || 'toggle')
         : this.activate();
     },
     /**
@@ -1220,7 +1221,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             tabindex: $props.tabindex,
             onInput: _cache[1] || (_cache[1] = $event => (_ctx.updateSearch($event.target.value))),
             onFocus: _cache[2] || (_cache[2] = vue.withModifiers($event => (_ctx.activate()), ["prevent"])),
-            onBlur: _cache[3] || (_cache[3] = vue.withModifiers($event => (_ctx.searchable ? false : _ctx.deactivate('blur2')), ["prevent"])),
+            onBlur: _cache[3] || (_cache[3] = vue.withModifiers($event => (_ctx.deactivate('blur2')), ["prevent"])),
             onKeyup: _cache[4] || (_cache[4] = vue.withKeys($event => (_ctx.deactivate('esc2')), ["esc"])),
             onKeydown: [
               _cache[5] || (_cache[5] = vue.withKeys(vue.withModifiers($event => (_ctx.pointerForward()), ["prevent"]), ["down"])),

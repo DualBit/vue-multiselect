@@ -684,6 +684,7 @@ export default {
 
       this.isOpen = false
       /* istanbul ignore else  */
+      console.log(this, this.$refs)
       if (this.searchable) {
         if (this.$refs.search !== null && typeof this.$refs.search !== 'undefined') this.$refs.search.blur()
       } else {
@@ -701,7 +702,7 @@ export default {
      */
     toggle (here = '') {
       this.isOpen
-        ? this.deactivate('toggle')
+        ? this.deactivate(here || 'toggle')
         : this.activate()
     },
     /**

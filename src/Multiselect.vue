@@ -61,7 +61,7 @@
         :tabindex="tabindex"
         @input="updateSearch($event.target.value)"
         @focus.prevent="activate()"
-        @blur.prevent="searchable ? false : deactivate('blur2')"
+        @blur.prevent="deactivate('blur2')"
         @keyup.esc="deactivate('esc2')"
         @keydown.down.prevent="pointerForward()"
         @keydown.up.prevent="pointerBackward()"

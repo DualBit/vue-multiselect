@@ -63,7 +63,7 @@
         @focus.prevent="activate()"
         @blur.prevent="deactivate('blur2')"
         @keyup.esc="deactivate('esc2')"
-        @keydown.down.prevent="pointerForward()"
+        @keydown.self.down.prevent="pointerForward()"
         @keydown.up.prevent="pointerBackward()"
         @keydown.enter.prevent.stop.self="addPointerElement($event)"
         @keydown.tab.stop.self="addPointerElement($event)"

@@ -818,7 +818,7 @@ var VueMultiselect = (function (exports, vue) {
             !this.groupSelect
           ) this.pointerForward();
         }
-        // this.pointerDirty = true
+        this.pointerDirty = true;
       },
       pointerBackward () {
         if (this.pointer > 0) {
@@ -1220,7 +1220,7 @@ var VueMultiselect = (function (exports, vue) {
               onBlur: _cache[3] || (_cache[3] = vue.withModifiers($event => (_ctx.deactivate('blur2')), ["prevent"])),
               onKeyup: _cache[4] || (_cache[4] = vue.withKeys($event => (_ctx.deactivate('esc2')), ["esc"])),
               onKeydown: [
-                _cache[5] || (_cache[5] = vue.withKeys(vue.withModifiers($event => (_ctx.pointerForward()), ["prevent"]), ["down"])),
+                _cache[5] || (_cache[5] = vue.withKeys(vue.withModifiers($event => (_ctx.pointerForward()), ["self","prevent"]), ["down"])),
                 _cache[6] || (_cache[6] = vue.withKeys(vue.withModifiers($event => (_ctx.pointerBackward()), ["prevent"]), ["up"])),
                 _cache[7] || (_cache[7] = vue.withKeys(vue.withModifiers($event => (_ctx.addPointerElement($event)), ["prevent","stop","self"]), ["enter"])),
                 _cache[8] || (_cache[8] = vue.withKeys(vue.withModifiers($event => (_ctx.addPointerElement($event)), ["stop","self"]), ["tab"])),

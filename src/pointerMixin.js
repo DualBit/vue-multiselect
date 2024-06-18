@@ -86,7 +86,7 @@ export default {
           !this.groupSelect
         ) this.pointerForward()
       }
-      // this.pointerDirty = true
+      this.pointerDirty = true
     },
     pointerBackward () {
       if (this.pointer > 0) {

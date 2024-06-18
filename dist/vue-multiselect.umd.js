@@ -2559,7 +2559,7 @@ const flow = (...fns) => x => fns.reduce((v, f) => f(v), x);
       if (option.isTag) {
         this.$emit('tag', option.label, this.id);
         this.search = '';
-        if (this.closeOnSelect && !this.multiple) this.deactivate();
+        if (this.closeOnSelect && !this.multiple) this.deactivate('banana');
       } else {
         const isSelected = this.isSelected(option);
         if (isSelected) {
@@ -2577,7 +2577,7 @@ const flow = (...fns) => x => fns.reduce((v, f) => f(v), x);
         if (this.clearOnSelect) this.search = '';
       }
       /* istanbul ignore else */
-      if (this.closeOnSelect) this.deactivate();
+      if (this.closeOnSelect) this.deactivate('mela');
     },
     /**
      * Add the given group options to the list of selected options
@@ -2605,7 +2605,7 @@ const flow = (...fns) => x => fns.reduce((v, f) => f(v), x);
         this.$emit('select', optionsToAdd, this.id);
         this.$emit('update:modelValue', this.internalValue.concat(optionsToAdd));
       }
-      if (this.closeOnSelect) this.deactivate();
+      if (this.closeOnSelect) this.deactivate('arancia');
     },
     /**
      * Helper to identify if all values in a group are selected
@@ -2638,7 +2638,7 @@ const flow = (...fns) => x => fns.reduce((v, f) => f(v), x);
       if (option.$isDisabled) return;
       /* istanbul ignore else */
       if (!this.allowEmpty && this.internalValue.length <= 1) {
-        this.deactivate();
+        this.deactivate('cocco');
         return;
       }
       const index = typeof option === 'object' ? this.valueKeys.indexOf(option[this.trackBy]) : this.valueKeys.indexOf(option);
@@ -2651,7 +2651,7 @@ const flow = (...fns) => x => fns.reduce((v, f) => f(v), x);
       this.$emit('remove', option, this.id);
 
       /* istanbul ignore else */
-      if (this.closeOnSelect && shouldClose) this.deactivate();
+      if (this.closeOnSelect && shouldClose) this.deactivate('pera');
     },
     /**
      * Calls this.removeElement() with the last element

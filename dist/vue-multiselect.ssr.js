@@ -526,7 +526,7 @@ var multiselectMixin = {
       if (option.isTag) {
         this.$emit('tag', option.label, this.id);
         this.search = '';
-        if (this.closeOnSelect && !this.multiple) this.deactivate();
+        if (this.closeOnSelect && !this.multiple) this.deactivate('banana');
       } else {
         const isSelected = this.isSelected(option);
 
@@ -547,7 +547,7 @@ var multiselectMixin = {
         if (this.clearOnSelect) this.search = '';
       }
       /* istanbul ignore else */
-      if (this.closeOnSelect) this.deactivate();
+      if (this.closeOnSelect) this.deactivate('mela');
     },
     /**
      * Add the given group options to the list of selected options
@@ -588,7 +588,7 @@ var multiselectMixin = {
         );
       }
 
-      if (this.closeOnSelect) this.deactivate();
+      if (this.closeOnSelect) this.deactivate('arancia');
     },
     /**
      * Helper to identify if all values in a group are selected
@@ -622,7 +622,7 @@ var multiselectMixin = {
       if (option.$isDisabled) return
       /* istanbul ignore else */
       if (!this.allowEmpty && this.internalValue.length <= 1) {
-        this.deactivate();
+        this.deactivate('cocco');
         return
       }
 
@@ -639,7 +639,7 @@ var multiselectMixin = {
       this.$emit('remove', option, this.id);
 
       /* istanbul ignore else */
-      if (this.closeOnSelect && shouldClose) this.deactivate();
+      if (this.closeOnSelect && shouldClose) this.deactivate('pera');
     },
     /**
      * Calls this.removeElement() with the last element

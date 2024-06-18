@@ -809,7 +809,6 @@ var VueMultiselect = (function (exports, vue) {
           this.pointer++;
           /* istanbul ignore next */
           if (this.$refs.list.scrollTop <= this.pointerPosition - (this.visibleElements - 1) * this.optionHeight) {
-            console.log('gg');
             this.$refs.list.scrollTop = this.pointerPosition - (this.visibleElements - 1) * this.optionHeight;
           }
           /* istanbul ignore else */
@@ -819,7 +818,7 @@ var VueMultiselect = (function (exports, vue) {
             !this.groupSelect
           ) this.pointerForward();
         }
-        this.pointerDirty = true;
+        // this.pointerDirty = true
       },
       pointerBackward () {
         if (this.pointer > 0) {

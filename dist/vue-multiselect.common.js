@@ -2807,13 +2807,12 @@ const flow = (...fns) => x => fns.reduce((v, f) => f(v), x);
         this.pointer++;
         /* istanbul ignore next */
         if (this.$refs.list.scrollTop <= this.pointerPosition - (this.visibleElements - 1) * this.optionHeight) {
-          console.log('gg');
           this.$refs.list.scrollTop = this.pointerPosition - (this.visibleElements - 1) * this.optionHeight;
         }
         /* istanbul ignore else */
         if (this.filteredOptions[this.pointer] && this.filteredOptions[this.pointer].$isLabel && !this.groupSelect) this.pointerForward();
       }
-      this.pointerDirty = true;
+      // this.pointerDirty = true
     },
     pointerBackward() {
       if (this.pointer > 0) {

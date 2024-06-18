@@ -85,7 +85,6 @@ export default {
           this.filteredOptions[this.pointer].$isLabel &&
           !this.groupSelect
         ) {
-          console.log('hh')
           this.pointerForward()
         }
       }

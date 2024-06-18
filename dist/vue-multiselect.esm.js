@@ -682,7 +682,7 @@ var multiselectMixin = {
     deactivate (here = '') {
       console.log(here);
       /* istanbul ignore else */
-      if (!this.isOpen) return
+      if (!this.isOpen || here === 'blur2') return
 
       this.isOpen = false;
       /* istanbul ignore else  */
@@ -816,7 +816,6 @@ var pointerMixin = {
           this.filteredOptions[this.pointer].$isLabel &&
           !this.groupSelect
         ) {
-          console.log('hh');
           this.pointerForward();
         }
       }

@@ -80,11 +80,11 @@ export default {
           this.$refs.list.scrollTop = this.pointerPosition - (this.visibleElements - 1) * this.optionHeight
         }
         /* istanbul ignore else */
-        if (
-          this.filteredOptions[this.pointer] &&
-          this.filteredOptions[this.pointer].$isLabel &&
-          !this.groupSelect
-        ) this.pointerForward()
+        // if (
+        //   this.filteredOptions[this.pointer] &&
+        //   this.filteredOptions[this.pointer].$isLabel &&
+        //   !this.groupSelect
+        // ) this.pointerForward()
       }
       this.pointerDirty = true
     },

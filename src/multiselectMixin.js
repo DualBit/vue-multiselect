@@ -520,7 +520,7 @@ export default {
       if (option.isTag) {
         this.$emit('tag', option.label, this.id)
         this.search = ''
-        if (this.closeOnSelect && !this.multiple) this.deactivate()
+        if (this.closeOnSelect && !this.multiple) this.deactivate('banana')
       } else {
         const isSelected = this.isSelected(option)
 
@@ -541,7 +541,7 @@ export default {
         if (this.clearOnSelect) this.search = ''
       }
       /* istanbul ignore else */
-      if (this.closeOnSelect) this.deactivate()
+      if (this.closeOnSelect) this.deactivate('mela')
     },
     /**
      * Add the given group options to the list of selected options
@@ -582,7 +582,7 @@ export default {
         )
       }
 
-      if (this.closeOnSelect) this.deactivate()
+      if (this.closeOnSelect) this.deactivate('arancia')
     },
     /**
      * Helper to identify if all values in a group are selected
@@ -616,7 +616,7 @@ export default {
       if (option.$isDisabled) return
       /* istanbul ignore else */
       if (!this.allowEmpty && this.internalValue.length <= 1) {
-        this.deactivate()
+        this.deactivate('cocco')
         return
       }
 
@@ -633,7 +633,7 @@ export default {
       this.$emit('remove', option, this.id)
 
       /* istanbul ignore else */
-      if (this.closeOnSelect && shouldClose) this.deactivate()
+      if (this.closeOnSelect && shouldClose) this.deactivate('pera')
     },
     /**
      * Calls this.removeElement() with the last element
@@ -677,12 +677,14 @@ export default {
      * Closes the multiselect’s dropdown.
      * Sets this.isOpen to FALSE
      */
-    deactivate () {
+    deactivate (here = '') {
+      console.log(here)
       /* istanbul ignore else */
-      if (!this.isOpen) return
+      if (!this.isOpen || here === 'blur2') return
 
       this.isOpen = false
       /* istanbul ignore else  */
+      console.log(this, this.$refs)
       if (this.searchable) {
         if (this.$refs.search !== null && typeof this.$refs.search !== 'undefined') this.$refs.search.blur()
       } else {
@@ -698,9 +700,9 @@ export default {
      * @fires this#activate || this#deactivate
      * @property {Boolean} isOpen indicates if dropdown is open
      */
-    toggle () {
+    toggle (here = '') {
       this.isOpen
-        ? this.deactivate()
+        ? this.deactivate(here || 'toggle')
         : this.activate()
     },
     /**

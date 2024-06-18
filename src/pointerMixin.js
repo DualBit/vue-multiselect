@@ -66,7 +66,6 @@ export default {
     },
     addPointerElement ({key} = 'Enter') {
       /* istanbul ignore else */
-      console.log(this.filteredOptions)
       if (this.filteredOptions.length > 0) {
         this.select(this.filteredOptions[this.pointer], key)
       }
@@ -74,6 +73,7 @@ export default {
     },
     pointerForward () {
       /* istanbul ignore else */
+      console.log(this.pointer, this.filteredOptions.length)
       if (this.pointer < this.filteredOptions.length - 1) {
         this.pointer++
         /* istanbul ignore next */

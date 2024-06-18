@@ -2794,7 +2794,6 @@ const flow = (...fns) => x => fns.reduce((v, f) => f(v), x);
       key
     } = 'Enter') {
       /* istanbul ignore else */
-      console.log(this.filteredOptions);
       if (this.filteredOptions.length > 0) {
         this.select(this.filteredOptions[this.pointer], key);
       }
@@ -2802,6 +2801,7 @@ const flow = (...fns) => x => fns.reduce((v, f) => f(v), x);
     },
     pointerForward() {
       /* istanbul ignore else */
+      console.log(this.pointer, this.filteredOptions.length);
       if (this.pointer < this.filteredOptions.length - 1) {
         this.pointer++;
         /* istanbul ignore next */

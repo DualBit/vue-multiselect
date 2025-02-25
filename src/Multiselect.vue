@@ -3,7 +3,7 @@
     :tabindex="searchable ? -1 : tabindex"
     :class="{ 'multiselect--active': isOpen, 'multiselect--disabled': disabled, 'multiselect--above': isAbove, 'multiselect--has-options-group': hasOptionGroup }"
     @focus="activate()"
-    @blur="searchable ? false : deactivate(true)"
+    @blur="searchable ? false : deactivate()"
     @keydown.self.down.prevent="pointerForward()"
     @keydown.self.up.prevent="pointerBackward()"
     @keydown.enter.prevent.stop.self="addPointerElement($event)"
@@ -61,7 +61,7 @@
         :tabindex="tabindex"
         @input="updateSearch($event.target.value)"
         @focus.prevent="activate()"
-        @blur.prevent="deactivate(true)"
+        @blur.prevent="deactivate()"
         @keyup.esc="deactivate()"
         @keydown.self.down.prevent="pointerForward()"
         @keydown.up.prevent="pointerBackward()"
@@ -665,7 +665,7 @@ export default {
     position: absolute;
     display: block;
     background: #fff;
-    //width: 100%;
+    min-width: 100%;
     max-height: 240px;
     overflow: auto;
     border: 1px solid #e8e8e8;

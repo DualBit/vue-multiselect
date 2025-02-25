@@ -683,10 +683,7 @@ var multiselectMixin = {
      * Closes the multiselect’s dropdown.
      * Sets this.isOpen to FALSE
      */
-    deactivate (isBlur = false) {
-      if (isBlur) {
-        return
-      }
+    deactivate () {
       /* istanbul ignore else */
       if (!this.isOpen) return
 
@@ -1137,7 +1134,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     tabindex: _ctx.searchable ? -1 : $props.tabindex,
     class: vue.normalizeClass([{ 'multiselect--active': _ctx.isOpen, 'multiselect--disabled': $props.disabled, 'multiselect--above': $options.isAbove, 'multiselect--has-options-group': $options.hasOptionGroup }, "multiselect"]),
     onFocus: _cache[14] || (_cache[14] = $event => (_ctx.activate())),
-    onBlur: _cache[15] || (_cache[15] = $event => (_ctx.searchable ? false : _ctx.deactivate(true))),
+    onBlur: _cache[15] || (_cache[15] = $event => (_ctx.searchable ? false : _ctx.deactivate())),
     onKeydown: [
       _cache[16] || (_cache[16] = vue.withKeys(vue.withModifiers($event => (_ctx.pointerForward()), ["self","prevent"]), ["down"])),
       _cache[17] || (_cache[17] = vue.withKeys(vue.withModifiers($event => (_ctx.pointerBackward()), ["self","prevent"]), ["up"])),
@@ -1223,7 +1220,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             tabindex: $props.tabindex,
             onInput: _cache[1] || (_cache[1] = $event => (_ctx.updateSearch($event.target.value))),
             onFocus: _cache[2] || (_cache[2] = vue.withModifiers($event => (_ctx.activate()), ["prevent"])),
-            onBlur: _cache[3] || (_cache[3] = vue.withModifiers($event => (_ctx.deactivate(true)), ["prevent"])),
+            onBlur: _cache[3] || (_cache[3] = vue.withModifiers($event => (_ctx.deactivate()), ["prevent"])),
             onKeyup: _cache[4] || (_cache[4] = vue.withKeys($event => (_ctx.deactivate()), ["esc"])),
             onKeydown: [
               _cache[5] || (_cache[5] = vue.withKeys(vue.withModifiers($event => (_ctx.pointerForward()), ["self","prevent"]), ["down"])),

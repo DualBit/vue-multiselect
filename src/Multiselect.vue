@@ -681,7 +681,7 @@ export default {
     display: inline-block;
     padding: 0;
     margin: 0;
-    min-width: 100%;
+    min-width: max-content;
     vertical-align: top;
   }
 

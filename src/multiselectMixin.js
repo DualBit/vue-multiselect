@@ -520,7 +520,7 @@ export default {
       if (option.isTag) {
         this.$emit('tag', option.label, this.id)
         this.search = ''
-        if (this.closeOnSelect && !this.multiple) this.deactivate('banana')
+        if (this.closeOnSelect && !this.multiple) this.deactivate()
       } else {
         const isSelected = this.isSelected(option)
 
@@ -541,7 +541,7 @@ export default {
         if (this.clearOnSelect) this.search = ''
       }
       /* istanbul ignore else */
-      if (this.closeOnSelect) this.deactivate('mela')
+      if (this.closeOnSelect) this.deactivate()
     },
     /**
      * Add the given group options to the list of selected options
@@ -582,7 +582,7 @@ export default {
         )
       }
 
-      if (this.closeOnSelect) this.deactivate('arancia')
+      if (this.closeOnSelect) this.deactivate()
     },
     /**
      * Helper to identify if all values in a group are selected
@@ -616,7 +616,7 @@ export default {
       if (option.$isDisabled) return
       /* istanbul ignore else */
       if (!this.allowEmpty && this.internalValue.length <= 1) {
-        this.deactivate('cocco')
+        this.deactivate()
         return
       }
 
@@ -633,7 +633,7 @@ export default {
       this.$emit('remove', option, this.id)
 
       /* istanbul ignore else */
-      if (this.closeOnSelect && shouldClose) this.deactivate('pera')
+      if (this.closeOnSelect && shouldClose) this.deactivate()
     },
     /**
      * Calls this.removeElement() with the last element
@@ -677,8 +677,7 @@ export default {
      * Closes the multiselect’s dropdown.
      * Sets this.isOpen to FALSE
      */
-    deactivate (here = '') {
-      console.log(here)
+    deactivate () {
       /* istanbul ignore else */
       if (!this.isOpen) return
 
@@ -699,9 +698,9 @@ export default {
      * @fires this#activate || this#deactivate
      * @property {Boolean} isOpen indicates if dropdown is open
      */
-    toggle (here = '') {
+    toggle () {
       this.isOpen
-        ? this.deactivate(here || 'toggle')
+        ? this.deactivate()
         : this.activate()
     },
     /**

@@ -665,7 +665,7 @@ export default {
     position: absolute;
     display: block;
     background: #fff;
-    width: 100%;
+    //width: 100%;
     max-height: 240px;
     overflow: auto;
     border: 1px solid #e8e8e8;

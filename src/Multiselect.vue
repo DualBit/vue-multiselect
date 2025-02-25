@@ -3,17 +3,17 @@
     :tabindex="searchable ? -1 : tabindex"
     :class="{ 'multiselect--active': isOpen, 'multiselect--disabled': disabled, 'multiselect--above': isAbove, 'multiselect--has-options-group': hasOptionGroup }"
     @focus="activate()"
-    @blur="searchable ? false : deactivate('blur')"
+    @blur="searchable ? false : deactivate(true)"
     @keydown.self.down.prevent="pointerForward()"
     @keydown.self.up.prevent="pointerBackward()"
     @keydown.enter.prevent.stop.self="addPointerElement($event)"
     @keydown.tab.stop.self="addPointerElement($event)"
-    @keyup.esc="deactivate('esc')"
+    @keyup.esc="deactivate()"
     class="multiselect"
     role="combobox"
     :aria-owns="'listbox-'+id">
     <slot name="caret" :toggle="toggle">
-      <div @mousedown.prevent.stop="toggle('b')" class="multiselect__select"></div>
+      <div @mousedown.prevent.stop="toggle()" class="multiselect__select"></div>
     </slot>
     <slot name="clear" :search="search"></slot>
     <div ref="tags" class="multiselect__tags">
@@ -61,8 +61,8 @@
         :tabindex="tabindex"
         @input="updateSearch($event.target.value)"
         @focus.prevent="activate()"
-        @blur.prevent="deactivate('blur2')"
-        @keyup.esc="deactivate('esc2')"
+        @blur.prevent="deactivate(true)"
+        @keyup.esc="deactivate()"
         @keydown.self.down.prevent="pointerForward()"
         @keydown.up.prevent="pointerBackward()"
         @keydown.enter.prevent.stop.self="addPointerElement($event)"
@@ -74,7 +74,7 @@
       <span
         v-if="isSingleLabelVisible"
         class="multiselect__single"
-        @mousedown.prevent="toggle('c')"
+        @mousedown.prevent="toggle()"
       >
         <slot name="singleLabel" :option="singleValue">
           {{ currentOptionLabel }}
@@ -83,7 +83,7 @@
       <span
         v-if="isPlaceholderVisible"
         class="multiselect__placeholder"
-        @mousedown.prevent="toggle('d')"
+        @mousedown.prevent="toggle()"
       >
         <slot name="placeholder">
           {{ placeholder }}

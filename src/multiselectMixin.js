@@ -677,7 +677,10 @@ export default {
      * Closes the multiselect’s dropdown.
      * Sets this.isOpen to FALSE
      */
-    deactivate () {
+    deactivate (isBlur = false) {
+      if (isBlur) {
+        return
+      }
       /* istanbul ignore else */
       if (!this.isOpen) return
 

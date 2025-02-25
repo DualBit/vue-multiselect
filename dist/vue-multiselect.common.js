@@ -503,17 +503,6 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
 
 /***/ }),
 
-/***/ "256e":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_v16_dist_index_js_ref_1_1_Multiselect_vue_vue_type_style_index_0_id_4784791d_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("ace7");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_v16_dist_index_js_ref_1_1_Multiselect_vue_vue_type_style_index_0_id_4784791d_lang_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_v16_dist_index_js_ref_1_1_Multiselect_vue_vue_type_style_index_0_id_4784791d_lang_css__WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
-
-
-/***/ }),
-
 /***/ "2d00":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -979,6 +968,17 @@ module.exports = {
 
 /***/ }),
 
+/***/ "6a85":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_v16_dist_index_js_ref_1_1_Multiselect_vue_vue_type_style_index_0_id_4f7c7730_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("def2");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_v16_dist_index_js_ref_1_1_Multiselect_vue_vue_type_style_index_0_id_4f7c7730_lang_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_v16_dist_index_js_ref_1_1_Multiselect_vue_vue_type_style_index_0_id_4f7c7730_lang_css__WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+
+
+/***/ }),
+
 /***/ "6b0d":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1292,13 +1292,6 @@ module.exports = function (METHOD_NAME, argument) {
   });
 };
 
-
-/***/ }),
-
-/***/ "ace7":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -1781,6 +1774,13 @@ module.exports = function (V, P) {
 
 /***/ }),
 
+/***/ "def2":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "e330":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1891,7 +1891,7 @@ if (typeof window !== 'undefined') {
 // EXTERNAL MODULE: external {"commonjs":"vue","commonjs2":"vue","root":"Vue"}
 var external_commonjs_vue_commonjs2_vue_root_Vue_ = __webpack_require__("8bbf");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--13-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader-v16/dist/templateLoader.js??ref--6!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader-v16/dist??ref--1-1!./src/Multiselect.vue?vue&type=template&id=4784791d
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--13-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader-v16/dist/templateLoader.js??ref--6!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader-v16/dist??ref--1-1!./src/Multiselect.vue?vue&type=template&id=4f7c7730
 
 const _hoisted_1 = ["tabindex", "aria-owns"];
 const _hoisted_2 = {
@@ -1934,15 +1934,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       'multiselect--has-options-group': $options.hasOptionGroup
     }, "multiselect"]),
     onFocus: _cache[14] || (_cache[14] = $event => _ctx.activate()),
-    onBlur: _cache[15] || (_cache[15] = $event => _ctx.searchable ? false : _ctx.deactivate('blur')),
+    onBlur: _cache[15] || (_cache[15] = $event => _ctx.searchable ? false : _ctx.deactivate(true)),
     onKeydown: [_cache[16] || (_cache[16] = Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withKeys"])(Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withModifiers"])($event => _ctx.pointerForward(), ["self", "prevent"]), ["down"])), _cache[17] || (_cache[17] = Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withKeys"])(Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withModifiers"])($event => _ctx.pointerBackward(), ["self", "prevent"]), ["up"])), _cache[18] || (_cache[18] = Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withKeys"])(Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withModifiers"])($event => _ctx.addPointerElement($event), ["prevent", "stop", "self"]), ["enter"])), _cache[19] || (_cache[19] = Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withKeys"])(Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withModifiers"])($event => _ctx.addPointerElement($event), ["stop", "self"]), ["tab"]))],
-    onKeyup: _cache[20] || (_cache[20] = Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withKeys"])($event => _ctx.deactivate('esc'), ["esc"])),
+    onKeyup: _cache[20] || (_cache[20] = Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withKeys"])($event => _ctx.deactivate(), ["esc"])),
     role: "combobox",
     "aria-owns": 'listbox-' + _ctx.id
   }, [Object(external_commonjs_vue_commonjs2_vue_root_Vue_["renderSlot"])(_ctx.$slots, "caret", {
     toggle: _ctx.toggle
   }, () => [Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createElementVNode"])("div", {
-    onMousedown: _cache[0] || (_cache[0] = Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withModifiers"])($event => _ctx.toggle('b'), ["prevent", "stop"])),
+    onMousedown: _cache[0] || (_cache[0] = Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withModifiers"])($event => _ctx.toggle(), ["prevent", "stop"])),
     class: "multiselect__select"
   }, null, 32)]), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["renderSlot"])(_ctx.$slots, "clear", {
     search: _ctx.search
@@ -1992,21 +1992,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     tabindex: $props.tabindex,
     onInput: _cache[1] || (_cache[1] = $event => _ctx.updateSearch($event.target.value)),
     onFocus: _cache[2] || (_cache[2] = Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withModifiers"])($event => _ctx.activate(), ["prevent"])),
-    onBlur: _cache[3] || (_cache[3] = Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withModifiers"])($event => _ctx.deactivate('blur2'), ["prevent"])),
-    onKeyup: _cache[4] || (_cache[4] = Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withKeys"])($event => _ctx.deactivate('esc2'), ["esc"])),
+    onBlur: _cache[3] || (_cache[3] = Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withModifiers"])($event => _ctx.deactivate(true), ["prevent"])),
+    onKeyup: _cache[4] || (_cache[4] = Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withKeys"])($event => _ctx.deactivate(), ["esc"])),
     onKeydown: [_cache[5] || (_cache[5] = Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withKeys"])(Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withModifiers"])($event => _ctx.pointerForward(), ["self", "prevent"]), ["down"])), _cache[6] || (_cache[6] = Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withKeys"])(Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withModifiers"])($event => _ctx.pointerBackward(), ["prevent"]), ["up"])), _cache[7] || (_cache[7] = Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withKeys"])(Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withModifiers"])($event => _ctx.addPointerElement($event), ["prevent", "stop", "self"]), ["enter"])), _cache[8] || (_cache[8] = Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withKeys"])(Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withModifiers"])($event => _ctx.addPointerElement($event), ["stop", "self"]), ["tab"])), _cache[9] || (_cache[9] = Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withKeys"])(Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withModifiers"])($event => _ctx.removeLastElement(), ["stop"]), ["delete"]))],
     class: "multiselect__input",
     "aria-controls": 'listbox-' + _ctx.id
   }, null, 44, _hoisted_8)) : Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createCommentVNode"])("", true), $options.isSingleLabelVisible ? (Object(external_commonjs_vue_commonjs2_vue_root_Vue_["openBlock"])(), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createElementBlock"])("span", {
     key: 1,
     class: "multiselect__single",
-    onMousedown: _cache[10] || (_cache[10] = Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withModifiers"])($event => _ctx.toggle('c'), ["prevent"]))
+    onMousedown: _cache[10] || (_cache[10] = Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withModifiers"])($event => _ctx.toggle(), ["prevent"]))
   }, [Object(external_commonjs_vue_commonjs2_vue_root_Vue_["renderSlot"])(_ctx.$slots, "singleLabel", {
     option: $options.singleValue
   }, () => [Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createTextVNode"])(Object(external_commonjs_vue_commonjs2_vue_root_Vue_["toDisplayString"])(_ctx.currentOptionLabel), 1)])], 32)) : Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createCommentVNode"])("", true), $options.isPlaceholderVisible ? (Object(external_commonjs_vue_commonjs2_vue_root_Vue_["openBlock"])(), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createElementBlock"])("span", {
     key: 2,
     class: "multiselect__placeholder",
-    onMousedown: _cache[11] || (_cache[11] = Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withModifiers"])($event => _ctx.toggle('d'), ["prevent"]))
+    onMousedown: _cache[11] || (_cache[11] = Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withModifiers"])($event => _ctx.toggle(), ["prevent"]))
   }, [Object(external_commonjs_vue_commonjs2_vue_root_Vue_["renderSlot"])(_ctx.$slots, "placeholder", {}, () => [Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createTextVNode"])(Object(external_commonjs_vue_commonjs2_vue_root_Vue_["toDisplayString"])(_ctx.placeholder), 1)])], 32)) : Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createCommentVNode"])("", true)], 512), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createVNode"])(external_commonjs_vue_commonjs2_vue_root_Vue_["Transition"], {
     name: "multiselect"
   }, {
@@ -2062,7 +2062,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 3
   })], 42, _hoisted_1);
 }
-// CONCATENATED MODULE: ./src/Multiselect.vue?vue&type=template&id=4784791d
+// CONCATENATED MODULE: ./src/Multiselect.vue?vue&type=template&id=4f7c7730
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.push.js
 var es_array_push = __webpack_require__("14d9");
@@ -2550,7 +2550,7 @@ const flow = (...fns) => x => fns.reduce((v, f) => f(v), x);
       if (option.isTag) {
         this.$emit('tag', option.label, this.id);
         this.search = '';
-        if (this.closeOnSelect && !this.multiple) this.deactivate('banana');
+        if (this.closeOnSelect && !this.multiple) this.deactivate();
       } else {
         const isSelected = this.isSelected(option);
         if (isSelected) {
@@ -2568,7 +2568,7 @@ const flow = (...fns) => x => fns.reduce((v, f) => f(v), x);
         if (this.clearOnSelect) this.search = '';
       }
       /* istanbul ignore else */
-      if (this.closeOnSelect) this.deactivate('mela');
+      if (this.closeOnSelect) this.deactivate();
     },
     /**
      * Add the given group options to the list of selected options
@@ -2596,7 +2596,7 @@ const flow = (...fns) => x => fns.reduce((v, f) => f(v), x);
         this.$emit('select', optionsToAdd, this.id);
         this.$emit('update:modelValue', this.internalValue.concat(optionsToAdd));
       }
-      if (this.closeOnSelect) this.deactivate('arancia');
+      if (this.closeOnSelect) this.deactivate();
     },
     /**
      * Helper to identify if all values in a group are selected
@@ -2629,7 +2629,7 @@ const flow = (...fns) => x => fns.reduce((v, f) => f(v), x);
       if (option.$isDisabled) return;
       /* istanbul ignore else */
       if (!this.allowEmpty && this.internalValue.length <= 1) {
-        this.deactivate('cocco');
+        this.deactivate();
         return;
       }
       const index = typeof option === 'object' ? this.valueKeys.indexOf(option[this.trackBy]) : this.valueKeys.indexOf(option);
@@ -2642,7 +2642,7 @@ const flow = (...fns) => x => fns.reduce((v, f) => f(v), x);
       this.$emit('remove', option, this.id);
 
       /* istanbul ignore else */
-      if (this.closeOnSelect && shouldClose) this.deactivate('pera');
+      if (this.closeOnSelect && shouldClose) this.deactivate();
     },
     /**
      * Calls this.removeElement() with the last element
@@ -2684,8 +2684,10 @@ const flow = (...fns) => x => fns.reduce((v, f) => f(v), x);
      * Closes the multiselect’s dropdown.
      * Sets this.isOpen to FALSE
      */
-    deactivate(here = '') {
-      console.log(here);
+    deactivate(isBlur = false) {
+      if (isBlur) {
+        return;
+      }
       /* istanbul ignore else */
       if (!this.isOpen) return;
       this.isOpen = false;
@@ -2705,8 +2707,8 @@ const flow = (...fns) => x => fns.reduce((v, f) => f(v), x);
      * @fires this#activate || this#deactivate
      * @property {Boolean} isOpen indicates if dropdown is open
      */
-    toggle(here = '') {
-      this.isOpen ? this.deactivate(here || 'toggle') : this.activate();
+    toggle() {
+      this.isOpen ? this.deactivate() : this.activate();
     },
     /**
      * Updates the hasEnoughSpace variable used for
@@ -3080,8 +3082,8 @@ const flow = (...fns) => x => fns.reduce((v, f) => f(v), x);
 });
 // CONCATENATED MODULE: ./src/Multiselect.vue?vue&type=script&lang=js
  
-// EXTERNAL MODULE: ./src/Multiselect.vue?vue&type=style&index=0&id=4784791d&lang=css
-var Multiselectvue_type_style_index_0_id_4784791d_lang_css = __webpack_require__("256e");
+// EXTERNAL MODULE: ./src/Multiselect.vue?vue&type=style&index=0&id=4f7c7730&lang=css
+var Multiselectvue_type_style_index_0_id_4f7c7730_lang_css = __webpack_require__("6a85");
 
 // EXTERNAL MODULE: ./node_modules/vue-loader-v16/dist/exportHelper.js
 var exportHelper = __webpack_require__("6b0d");

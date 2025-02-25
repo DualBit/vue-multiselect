@@ -523,7 +523,7 @@ var VueMultiselect = (function (exports, vue) {
         if (option.isTag) {
           this.$emit('tag', option.label, this.id);
           this.search = '';
-          if (this.closeOnSelect && !this.multiple) this.deactivate('banana');
+          if (this.closeOnSelect && !this.multiple) this.deactivate();
         } else {
           const isSelected = this.isSelected(option);
 
@@ -544,7 +544,7 @@ var VueMultiselect = (function (exports, vue) {
           if (this.clearOnSelect) this.search = '';
         }
         /* istanbul ignore else */
-        if (this.closeOnSelect) this.deactivate('mela');
+        if (this.closeOnSelect) this.deactivate();
       },
       /**
        * Add the given group options to the list of selected options
@@ -585,7 +585,7 @@ var VueMultiselect = (function (exports, vue) {
           );
         }
 
-        if (this.closeOnSelect) this.deactivate('arancia');
+        if (this.closeOnSelect) this.deactivate();
       },
       /**
        * Helper to identify if all values in a group are selected
@@ -619,7 +619,7 @@ var VueMultiselect = (function (exports, vue) {
         if (option.$isDisabled) return
         /* istanbul ignore else */
         if (!this.allowEmpty && this.internalValue.length <= 1) {
-          this.deactivate('cocco');
+          this.deactivate();
           return
         }
 
@@ -636,7 +636,7 @@ var VueMultiselect = (function (exports, vue) {
         this.$emit('remove', option, this.id);
 
         /* istanbul ignore else */
-        if (this.closeOnSelect && shouldClose) this.deactivate('pera');
+        if (this.closeOnSelect && shouldClose) this.deactivate();
       },
       /**
        * Calls this.removeElement() with the last element
@@ -680,8 +680,10 @@ var VueMultiselect = (function (exports, vue) {
        * Closes the multiselect’s dropdown.
        * Sets this.isOpen to FALSE
        */
-      deactivate (here = '') {
-        console.log(here);
+      deactivate (isBlur = false) {
+        if (isBlur) {
+          return
+        }
         /* istanbul ignore else */
         if (!this.isOpen) return
 
@@ -702,9 +704,9 @@ var VueMultiselect = (function (exports, vue) {
        * @fires this#activate || this#deactivate
        * @property {Boolean} isOpen indicates if dropdown is open
        */
-      toggle (here = '') {
+      toggle () {
         this.isOpen
-          ? this.deactivate(here || 'toggle')
+          ? this.deactivate()
           : this.activate();
       },
       /**
@@ -1132,20 +1134,20 @@ var VueMultiselect = (function (exports, vue) {
       tabindex: _ctx.searchable ? -1 : $props.tabindex,
       class: vue.normalizeClass([{ 'multiselect--active': _ctx.isOpen, 'multiselect--disabled': $props.disabled, 'multiselect--above': $options.isAbove, 'multiselect--has-options-group': $options.hasOptionGroup }, "multiselect"]),
       onFocus: _cache[14] || (_cache[14] = $event => (_ctx.activate())),
-      onBlur: _cache[15] || (_cache[15] = $event => (_ctx.searchable ? false : _ctx.deactivate('blur'))),
+      onBlur: _cache[15] || (_cache[15] = $event => (_ctx.searchable ? false : _ctx.deactivate(true))),
       onKeydown: [
         _cache[16] || (_cache[16] = vue.withKeys(vue.withModifiers($event => (_ctx.pointerForward()), ["self","prevent"]), ["down"])),
         _cache[17] || (_cache[17] = vue.withKeys(vue.withModifiers($event => (_ctx.pointerBackward()), ["self","prevent"]), ["up"])),
         _cache[18] || (_cache[18] = vue.withKeys(vue.withModifiers($event => (_ctx.addPointerElement($event)), ["prevent","stop","self"]), ["enter"])),
         _cache[19] || (_cache[19] = vue.withKeys(vue.withModifiers($event => (_ctx.addPointerElement($event)), ["stop","self"]), ["tab"]))
       ],
-      onKeyup: _cache[20] || (_cache[20] = vue.withKeys($event => (_ctx.deactivate('esc')), ["esc"])),
+      onKeyup: _cache[20] || (_cache[20] = vue.withKeys($event => (_ctx.deactivate()), ["esc"])),
       role: "combobox",
       "aria-owns": 'listbox-'+_ctx.id
     }, [
       vue.renderSlot(_ctx.$slots, "caret", { toggle: _ctx.toggle }, () => [
         vue.createElementVNode("div", {
-          onMousedown: _cache[0] || (_cache[0] = vue.withModifiers($event => (_ctx.toggle('b')), ["prevent","stop"])),
+          onMousedown: _cache[0] || (_cache[0] = vue.withModifiers($event => (_ctx.toggle()), ["prevent","stop"])),
           class: "multiselect__select"
         }, null, 32 /* NEED_HYDRATION */)
       ]),
@@ -1218,8 +1220,8 @@ var VueMultiselect = (function (exports, vue) {
               tabindex: $props.tabindex,
               onInput: _cache[1] || (_cache[1] = $event => (_ctx.updateSearch($event.target.value))),
               onFocus: _cache[2] || (_cache[2] = vue.withModifiers($event => (_ctx.activate()), ["prevent"])),
-              onBlur: _cache[3] || (_cache[3] = vue.withModifiers($event => (_ctx.deactivate('blur2')), ["prevent"])),
-              onKeyup: _cache[4] || (_cache[4] = vue.withKeys($event => (_ctx.deactivate('esc2')), ["esc"])),
+              onBlur: _cache[3] || (_cache[3] = vue.withModifiers($event => (_ctx.deactivate(true)), ["prevent"])),
+              onKeyup: _cache[4] || (_cache[4] = vue.withKeys($event => (_ctx.deactivate()), ["esc"])),
               onKeydown: [
                 _cache[5] || (_cache[5] = vue.withKeys(vue.withModifiers($event => (_ctx.pointerForward()), ["self","prevent"]), ["down"])),
                 _cache[6] || (_cache[6] = vue.withKeys(vue.withModifiers($event => (_ctx.pointerBackward()), ["prevent"]), ["up"])),
@@ -1235,7 +1237,7 @@ var VueMultiselect = (function (exports, vue) {
           ? (vue.openBlock(), vue.createElementBlock("span", {
               key: 1,
               class: "multiselect__single",
-              onMousedown: _cache[10] || (_cache[10] = vue.withModifiers($event => (_ctx.toggle('c')), ["prevent"]))
+              onMousedown: _cache[10] || (_cache[10] = vue.withModifiers($event => (_ctx.toggle()), ["prevent"]))
             }, [
               vue.renderSlot(_ctx.$slots, "singleLabel", { option: $options.singleValue }, () => [
                 vue.createTextVNode(vue.toDisplayString(_ctx.currentOptionLabel), 1 /* TEXT */)
@@ -1246,7 +1248,7 @@ var VueMultiselect = (function (exports, vue) {
           ? (vue.openBlock(), vue.createElementBlock("span", {
               key: 2,
               class: "multiselect__placeholder",
-              onMousedown: _cache[11] || (_cache[11] = vue.withModifiers($event => (_ctx.toggle('d')), ["prevent"]))
+              onMousedown: _cache[11] || (_cache[11] = vue.withModifiers($event => (_ctx.toggle()), ["prevent"]))
             }, [
               vue.renderSlot(_ctx.$slots, "placeholder", {}, () => [
                 vue.createTextVNode(vue.toDisplayString(_ctx.placeholder), 1 /* TEXT */)
